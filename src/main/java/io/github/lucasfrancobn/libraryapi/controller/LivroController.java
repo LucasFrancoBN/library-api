@@ -1,10 +1,8 @@
 package io.github.lucasfrancobn.libraryapi.controller;
 
 import io.github.lucasfrancobn.libraryapi.controller.dto.CadastroLivroDTO;
-import io.github.lucasfrancobn.libraryapi.controller.dto.ErroResposta;
 import io.github.lucasfrancobn.libraryapi.controller.dto.ResultadoPesquisaLivroDTO;
 import io.github.lucasfrancobn.libraryapi.controller.mapper.LivroMapper;
-import io.github.lucasfrancobn.libraryapi.exceptions.RegistroDuplicadoException;
 import io.github.lucasfrancobn.libraryapi.model.GeneroLivro;
 import io.github.lucasfrancobn.libraryapi.model.Livro;
 import io.github.lucasfrancobn.libraryapi.service.LivroService;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
