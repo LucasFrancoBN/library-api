@@ -16,9 +16,14 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
 
+    @Column(nullable = false)
     public String login;
 
+    @Column(nullable = false)
     public String senha;
+
+    @Column(nullable = false)
+    public String email;
 
     @Type(ListArrayType.class)
     @Column(name = "roles", columnDefinition = "varchar[]")
