@@ -2,8 +2,10 @@ package io.github.lucasfrancobn.libraryapi.service;
 
 import io.github.lucasfrancobn.libraryapi.exceptions.OperacaoNaoPermitidaException;
 import io.github.lucasfrancobn.libraryapi.model.Autor;
+import io.github.lucasfrancobn.libraryapi.model.Usuario;
 import io.github.lucasfrancobn.libraryapi.repository.AutorRepository;
 import io.github.lucasfrancobn.libraryapi.repository.LivroRepository;
+import io.github.lucasfrancobn.libraryapi.security.SecurityService;
 import io.github.lucasfrancobn.libraryapi.validator.AutorValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -20,9 +22,12 @@ public class AutorService {
     private final AutorRepository repository;
     private final AutorValidator validator;
     private final LivroRepository livroRepository;
+    private final SecurityService securityService;
 
 
     public Autor save(Autor autor) {
+        Usuario usuario = securityService.obterUsuarioLogado();
+        autor.setUsuario(usuario);
         return repository.save(autor);
     }
 
@@ -71,6 +76,10 @@ public class AutorService {
             throw new IllegalArgumentException("Para atualizar, é necessário que o autor tenha um ID");
         }
         validator.validar(autor);
+
+        Usuario usuario = securityService.obterUsuarioLogado();
+        autor.setUsuario(usuario);
+
         repository.save(autor);
     }
 
