@@ -19,15 +19,11 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class LoginSocialSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     private static final String SENHA_PADRAO = "321";
 
     private final UsuarioService usuarioService;
-
-    public LoginSocialSuccessHandler(UsuarioService usuarioService) {
-        System.out.println("---------- CLASSE INICIADA COM SUCESSO ----------");
-        this.usuarioService = usuarioService;
-    }
 
     @Override
     public void onAuthenticationSuccess(
@@ -35,7 +31,6 @@ public class LoginSocialSuccessHandler extends SavedRequestAwareAuthenticationSu
             HttpServletResponse response,
             Authentication authentication
     ) throws IOException, ServletException {
-        System.out.println("Login Social Success Handler");
         // Pegamos o authentication do google
         OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken) authentication;
         OAuth2User oAuth2 = authenticationToken.getPrincipal();

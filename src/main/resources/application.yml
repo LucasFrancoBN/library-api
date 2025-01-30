@@ -3,7 +3,7 @@ spring:
     name: libraryapi
   datasource:
     url: jdbc:postgresql://localhost:5432/library
-    username: librarydb
+    username: toor
     password: pass@123
     driver-class-name: org.postgresql.Driver
   jpa:
