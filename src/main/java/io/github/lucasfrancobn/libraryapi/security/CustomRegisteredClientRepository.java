@@ -11,6 +11,10 @@ import org.springframework.security.oauth2.server.authorization.settings.ClientS
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class CustomRegisteredClientRepository implements RegisteredClientRepository {
@@ -30,17 +34,16 @@ public class CustomRegisteredClientRepository implements RegisteredClientReposit
     public RegisteredClient findByClientId(String clientId) {
         Client client = clientService.obterPorClientId(clientId);
 
-        if(client == null) {
-            return null;
-        }
+        if (client == null) return null;
+
+        Set<String> scopes = Arrays.stream(client.getScope().split(" ")).collect(Collectors.toSet());
 
         return RegisteredClient
                 .withId(client.getId().toString())
                 .clientId(client.getClientId())
                 .clientSecret(client.getClientSecret())
                 .redirectUri(client.getRedirectURI())
-                .scope(client.getScope())
-                // Indica qual é a forma que o client vai se autenticar
+                .scopes(s -> s.addAll(scopes))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
