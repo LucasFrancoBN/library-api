@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 // Substitui autor-controller pelo nome especificado
 @Tag(name = "Autores")
+@Slf4j
 public class AutorController implements GenericController {
     private final AutorService autorService;
     private final AutorMapper mapper;
@@ -37,6 +39,8 @@ public class AutorController implements GenericController {
             @ApiResponse(responseCode = "409", description = "Autor já cadastrado.")
     })
     public ResponseEntity<Void> salvar(@RequestBody @Valid AutorDTO dto) {
+        log.info("Cadastrando novo autor: {}", dto);
+
         var autorEntidade = mapper.toEntity(dto);
         var autorSalvo = autorService.save(autorEntidade);
         URI location = gerarHeaderLocation(autorSalvo.getId());
@@ -70,6 +74,7 @@ public class AutorController implements GenericController {
             @ApiResponse(responseCode = "400", description = "Autor possui livro(s) cadastrado(s)")
     })
     public ResponseEntity<Void> remover(@PathVariable("id") String id) {
+        log.info("Remover Autor com ID: {}", id);
 
         UUID idAutor = UUID.fromString(id);
         Optional<Autor> autorOptional = autorService.obterPorId(idAutor);
@@ -116,6 +121,7 @@ public class AutorController implements GenericController {
             @ApiResponse(responseCode = "409", description = "Autor já cadastrado."),
     })
     public ResponseEntity<Void> atualizar(@PathVariable("id") String id, @RequestBody @Valid AutorDTO dto) {
+        log.info("Atualizar Autor com ID: {} com dados {}", id, dto);
 
         UUID idAutor = UUID.fromString(id);
         Optional<Autor> autorOptional = autorService.obterPorId(idAutor);

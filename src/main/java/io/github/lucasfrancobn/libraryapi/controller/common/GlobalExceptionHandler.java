@@ -5,6 +5,7 @@ import io.github.lucasfrancobn.libraryapi.controller.dto.ErroResposta;
 import io.github.lucasfrancobn.libraryapi.exceptions.CampoInvalidoException;
 import io.github.lucasfrancobn.libraryapi.exceptions.OperacaoNaoPermitidaException;
 import io.github.lucasfrancobn.libraryapi.exceptions.RegistroDuplicadoException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.List;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErroResposta handleMethodArgumentNotValidException(final MethodArgumentNotValidException exception) {
+        log.error("Erro de validação: {}", exception.getMessage());
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         List<ErroCampo> listaErros = fieldErrors
                 .stream()
@@ -64,13 +67,14 @@ public class GlobalExceptionHandler {
         return new ErroResposta(HttpStatus.FORBIDDEN.value(), "Acesso negado", List.of());
     }
 
-//    @ExceptionHandler(Exception.class)
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public ErroResposta handleErrosNaoTratados(Exception exception) {
-//        return new ErroResposta(
-//                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-//                "Ocorreu um erro inesperado. Entre em contato com a administração",
-//                List.of(new ErroCampo("erro", exception.getMessage()))
-//        );
-//    }
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErroResposta handleErrosNaoTratados(Exception exception) {
+        log.error("Erro de inesperado", exception);
+        return new ErroResposta(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Ocorreu um erro inesperado. Entre em contato com a administração",
+                List.of(new ErroCampo("erro", exception.getMessage()))
+        );
+    }
 }

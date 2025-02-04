@@ -8,6 +8,7 @@ import io.github.lucasfrancobn.libraryapi.model.Livro;
 import io.github.lucasfrancobn.libraryapi.service.LivroService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/livros")
 @RequiredArgsConstructor
+@Slf4j
 public class LivroController implements GenericController {
     private final LivroService livroService;
     private final LivroMapper livroMapper;
@@ -25,6 +27,7 @@ public class LivroController implements GenericController {
     @PostMapping
     @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
     public ResponseEntity<Void> salvarLivro(@RequestBody @Valid CadastroLivroDTO request) {
+        log.info("Salvando livro: {}", request);
         Livro livro = livroMapper.toEntity(request);
         livroService.salvar(livro);
         var url = gerarHeaderLocation(livro.getId());
@@ -45,6 +48,7 @@ public class LivroController implements GenericController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
     public ResponseEntity<Object> deletar(@PathVariable UUID id) {
+        log.info("Deletando livro: {}", id);
         return livroService.obterPorId(id)
                 .map(l -> {
                     livroService.deletar(l);
@@ -79,6 +83,7 @@ public class LivroController implements GenericController {
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('OPERADOR', 'GERENTE')")
     public ResponseEntity<Object> atualizar(@PathVariable UUID id, @RequestBody @Valid CadastroLivroDTO request) {
+        log.info("Atualizando livro com id {} e dados {}", id, request);
         return livroService.obterPorId(id)
                 .map(livro -> {
                     Livro entidadeAux = livroMapper.toEntity(request);
