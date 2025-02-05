@@ -6,7 +6,7 @@
 - [Funcionalidades](#funcionalidades)
 - [Ferramentas utilizadas](#ferramentas-utilizadas)
 - [Guia de implantação](#guia-de-implantação)
-- [Vídeo de demonstração](#vídeo-de-demonstracao)
+- [Vídeo de demonstração](#vídeo-de-demonstração)
 - [Desenvolvedores](#desenvolvedores)
 
 ## Descrição do projeto
