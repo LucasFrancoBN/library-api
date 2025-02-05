@@ -62,7 +62,7 @@ Clique no Gif a seguir para ver o funcionamento dos fluxos de autenticação:
 [![Vídeo de demonstração](https://i.ytimg.com/an_webp/NKO6Tibq5RY/mqdefault_6s.webp?du=3000&sqp=CKqzir0G&rs=AOn4CLAMuDrOyTC-yEszHAmv4xwyhOw_qg)](https://www.youtube.com/embed/NKO6Tibq5RY?si=9rZ--VaUI6_6tKty)
 
 ## Guia de implantação
-Antes de iniciar o projeto, precisamos do [Docker](https://www.docker.com/) e [Git]([https://www.docker.com/](https://git-scm.com/)) instalados em nossas máquinas.
+Antes de iniciar o projeto, precisamos do [Docker](https://www.docker.com/) e [Git](https://git-scm.com/) instalados em nossas máquinas.
 Tendo o git instlado, rode o seguinte comando no terminal da sua máquina:
 ``` bash
 git clone https://github.com/LucasFrancoBN/library-api.git
