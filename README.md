@@ -12,7 +12,7 @@
 ## Descrição do projeto
 
 <p align="justify">
-Este projeto foi criado pensando em ser uma aplicação de biblioteca, onde eu poderia estudar a fundo conceitos do JPA, Spring Boot, Spring Data JPA, Spring Security e protocolo OAuth2.
+Este projeto foi criado pensando em ser uma aplicação de biblioteca, onde eu poderia estudar a fundo conceitos do JPA, Spring Boot, Spring Data JPA, Spring Security, protocolo OAuth2, Spring Actuator, Thymeleaf e MapStruct.
 </p>
 
 ## Funcionalidades
@@ -61,6 +61,18 @@ Clique no Gif a seguir para ver o funcionamento dos fluxos de autenticação:
 
 [![Vídeo de demonstração](https://i.ytimg.com/an_webp/NKO6Tibq5RY/mqdefault_6s.webp?du=3000&sqp=CKqzir0G&rs=AOn4CLAMuDrOyTC-yEszHAmv4xwyhOw_qg)](https://www.youtube.com/embed/NKO6Tibq5RY?si=9rZ--VaUI6_6tKty)
 
+## Guia de implantação
+Antes de iniciar o projeto, precisamos do [Docker](https://www.docker.com/) e [Git]([https://www.docker.com/](https://git-scm.com/)) instalados em nossas máquinas.
+Tendo o git instlado, rode o seguinte comando no terminal da sua máquina:
+``` bash
+git clone https://github.com/LucasFrancoBN/library-api.git
+```
+Após isso, rode o seguinte comando no diretório raiz do projeto (somente se tiver o docker instalado em sua máquina): 
+``` bash
+docker-compose up
+```
+
+PS: Por questões de segurança, a autenticação/autorização com o google não estará disponível para testar, mas ainda será possível se autenticar via fluxo Authorization Code
 
 ## Desenvolvedores
 <table align="center">
