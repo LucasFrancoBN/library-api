@@ -2,12 +2,14 @@
 
 ### Tópicos
 
-- [Descrição do projeto](#descrição-do-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Ferramentas utilizadas](#ferramentas-utilizadas)
-- [Guia de implantação](#guia-de-implantação)
-- [Vídeo de demonstração](#vídeo-de-demonstração)
-- [Desenvolvedores](#desenvolvedores)
+<div align="center">
+ <h2> Sumário</h2>
+  <a href="#descrição-do-projeto">Descrição do projeto</a> -
+  <a href="#ferramentas-utilizadas">Ferramentas utilizadas</a> - 
+  <a href="#guia-de-implantação">Guia de implantação</a> -
+  <a href="#vídeo-de-demonstração">Vídeo de demonstração</a> -
+  <a href="#desenvolvedores">Desenvolvedores</a>
+</div>
 
 ## Descrição do projeto
 
