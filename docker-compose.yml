@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres
+    container_name: db-library
+    environment:
+      POSTGRES_USER: lib_user
+      POSTGRES_PASSWORD: lib_password@123
+      POSTGRES_DB: library
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    image: 'library-api'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: library-api
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    environment:
+      DATASOURCE_URL: 'jdbc:postgresql://db-library:5432/library'
+      DATASOURCE_USERNAME: 'lib_user'
+      DATASOURCE_PASSWORD: 'lib_password@123'
+      GOOGLE_CLIENT_ID: 'client-id'
+      GOOGLE_CLIENT_SECRET: 'client-secret'
+      SPRING_PROFILES_ACTIVE: 'default'
+      TZ: 'America/Sao_Paulo'
+
+volumes:
+  postgres_data:

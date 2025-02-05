@@ -11,7 +11,7 @@
 ## Descrição do projeto
 
 <p align="justify">
-Este projeto foi criado pensando em ser uma aplicação de biblioteca, onde eu poderia estudar a fundo conceitos do JPA, Spring Boot, Spring Data JPA e Spring Security
+Este projeto foi criado pensando em ser uma aplicação de biblioteca, onde eu poderia estudar a fundo conceitos do JPA, Spring Boot, Spring Data JPA, Spring Security e protocolo OAuth2.
 </p>
 
 ## Funcionalidades
@@ -53,6 +53,9 @@ Este projeto foi criado pensando em ser uma aplicação de biblioteca, onde eu p
 </a>
 
 </div>
+
+## Vídeo de demonstração
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NKO6Tibq5RY?si=9rZ--VaUI6_6tKty" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Desenvolvedores
 <table align="center">
