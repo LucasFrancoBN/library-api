@@ -1,7 +1,5 @@
 # 📚 Library API 📚
 
-### Tópicos
-
 <div align="center">
  <h2> Sumário</h2>
   <a href="#descrição-do-projeto">Descrição do projeto</a> -
